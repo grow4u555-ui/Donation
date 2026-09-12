@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0f14" />
+  <title>Nepal Flood Relief — Donate</title>
+  <meta name="description" content="Support families affected by the Nepal floods. Every contribution counts." />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #080b10;
+      color: #fff;
+      line-height: 1.5;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 16px;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255, 48, 95, .16), transparent 30%),
+        radial-gradient(circle at 80% 90%, rgba(255, 100, 50, .12), transparent 30%),
+        #080b10;
+    }
+
+    .wrap { width: 100%; max-width: 980px; }
+
+    .card {
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 28px;
+      background: rgba(18,22,29,.92);
+      box-shadow: 0 25px 80px rgba(0,0,0,.45);
+    }
+
+    .cover {
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .content {
+      padding: 34px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: rgba(255, 35, 85, .13);
+      border: 1px solid rgba(255, 80, 110, .25);
+      color: #ff9aae;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 6vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -1.8px;
+      margin-bottom: 14px;
+    }
+
+    .lead {
+      max-width: 690px;
+      margin: 0 auto 28px;
+      color: #aeb6c2;
+      font-size: 16px;
+    }
+
+    .amount-box {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 22px;
+      border-radius: 22px;
+      background: #0d1219;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .quick {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 9px;
+      margin-bottom: 14px;
+    }
+
+    .quick button {
+      border: 1px solid #29313d;
+      background: #151b23;
+      color: #fff;
+      border-radius: 12px;
+      padding: 11px 6px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .quick button:hover, .quick button.active {
+      border-color: #ff315e;
+      background: rgba(255,49,94,.12);
+    }
+
+    .amount-input {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .amount-input span {
+      position: absolute;
+      left: 17px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid #303846;
+      border-radius: 13px;
+      background: #080c11;
+      color: #fff;
+      padding: 15px 18px 15px 40px;
+      font-size: 20px;
+      outline: none;
+    }
+
+    input:focus { border-color: #ff315e; }
+
+    .donate-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 14px;
+      padding: 16px;
+      background: linear-gradient(135deg, #ff174f, #ff4b72);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(255, 23, 79, .22);
+    }
+
+    .donate-btn:hover { transform: translateY(-1px); }
+
+    .error {
+      min-height: 22px;
+      margin-top: 8px;
+      color: #ff8ea6;
+      font-size: 13px;
+    }
+
+    .qr-section {
+      display: none;
+      margin: 28px auto 0;
+      max-width: 560px;
+      padding: 24px;
+      border-radius: 22px;
+      background: #fff;
+      color: #111;
+    }
+
+    .qr-section.show { display: block; }
+
+    .qr-section h2 {
+      font-size: 23px;
+      margin-bottom: 5px;
+    }
+
+    .qr-section p {
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .qr {
+      width: min(100%, 390px);
+      display: block;
+      margin: 0 auto 15px;
+      border-radius: 14px;
+    }
+
+    .upi {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 13px;
+      background: #f2f3f5;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      word-break: break-all;
+    }
+
+    .copy {
+      border: 0;
+      background: #111827;
+      color: #fff;
+      padding: 7px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .notice {
+      margin: 26px auto 0;
+      max-width: 760px;
+      padding: 16px;
+      border-radius: 15px;
+      background: rgba(255,255,255,.035);
+      color: #9fa8b5;
+      font-size: 13px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 22px;
+      color: #6f7885;
+      font-size: 12px;
+    }
+
+    @media (max-width: 650px) {
+      .content { padding: 25px 17px; }
+      .cover { height: 230px; }
+      .quick { grid-template-columns: repeat(2, 1fr); }
+      .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="hero">
+    <div class="wrap">
+      <section class="card">
+
+        <!-- Keep your existing repository image name -->
+        <img class="cover" src="nepal-flood-relief.jpg" alt="Nepal flood relief" />
+
+        <div class="content">
+          <div class="badge">🇳🇵 NEPAL FLOOD RELIEF</div>
+
+          <h1>Help Families Recover</h1>
+
+          <p class="lead">
+            Families affected by the Nepal floods need food, essential supplies
+            and immediate support. If you can help, even a small contribution matters.
+          </p>
+
+          <div class="amount-box">
+            <div class="quick">
+              <button type="button" data-amount="100">₹100</button>
+              <button type="button" data-amount="250">₹250</button>
+              <button type="button" data-amount="500">₹500</button>
+              <button type="button" data-amount="1000">₹1,000</button>
+            </div>
+
+            <div class="amount-input">
+              <span>₹</span>
+              <input id="amount" type="number" min="1" step="1" placeholder="Enter amount" inputmode="numeric" />
+            </div>
+
+            <button class="donate-btn" id="donateBtn">Continue to Donation</button>
+            <div class="error" id="error"></div>
+          </div>
+
+          <div class="qr-section" id="qrSection">
+            <h2>Scan & Pay ₹<span id="showAmount">1</span></h2>
+            <p>Open any UPI app and scan the QR code below.</p>
+
+            <!-- IMPORTANT: this QR must remain the exact QR generated by your bank -->
+            <img class="qr" src="payment-qr-clean.png" alt="UPI donation QR code" />
+
+            <div class="upi">
+              <span>7029678382@kotakbank</span>
+              <button class="copy" id="copyBtn" type="button">Copy</button>
+            </div>
+
+            <p style="margin-top:14px; margin-bottom:0;">
+              After entering your donation amount above, pay the same amount using this QR.
+            </p>
+          </div>
+
+          <div class="notice">
+            This is a community-led Nepal flood relief effort. We are not a registered NGO.
+            Donations are voluntary and intended to support people affected by the floods.
+          </div>
+        </div>
+
+        <footer>
+          Every contribution counts. ❤️ Together we can make a difference.
+        </footer>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const amount = document.getElementById("amount");
+    const error = document.getElementById("error");
+    const qrSection = document.getElementById("qrSection");
+    const showAmount = document.getElementById("showAmount");
+
+    document.querySelectorAll(".quick button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        amount.value = btn.dataset.amount;
+        document.querySelectorAll(".quick button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      });
+    });
+
+    document.getElementById("donateBtn").addEventListener("click", () => {
+      const value = Number(amount.value);
+
+      if (!Number.isFinite(value) || value < 1 || !Number.isInteger(value)) {
+        error.textContent = "Please enter a donation amount of at least ₹1.";
+        qrSection.classList.remove("show");
+        return;
+      }
+
+      error.textContent = "";
+      showAmount.textContent = value.toLocaleString("en-IN");
+      qrSection.classList.add("show");
+      qrSection.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText("7029678382@kotakbank");
+        document.getElementById("copyBtn").textContent = "Copied!";
+        setTimeout(() => document.getElementById("copyBtn").textContent = "Copy", 1500);
+      } catch {
+        alert("UPI ID: 7029678382@kotakbank");
+      }
+    });
+  </script>
+</body>
+</html>
